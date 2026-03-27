@@ -149,11 +149,11 @@ struct NotchView: View {
                             : cornerRadiusInsets.closed.bottom
                     )
                     .padding([.horizontal, .bottom], viewModel.status == .opened ? 12 : 0)
-                    .background(.black)
+                    .background(viewModel.hasPhysicalNotch ? Color.black : Color.black.opacity(0.65))
                     .clipShape(currentNotchShape)
                     .overlay(alignment: .top) {
                         Rectangle()
-                            .fill(.black)
+                            .fill(viewModel.hasPhysicalNotch ? Color.black : Color.black.opacity(0.65))
                             .frame(height: 1)
                             .padding(.horizontal, topCornerRadius)
                     }
@@ -272,9 +272,9 @@ struct NotchView: View {
                     .fill(.clear)
                     .frame(width: closedNotchSize.width - 20)
             } else {
-                // Closed with activity: black spacer (with optional bounce)
+                // Closed with activity: spacer (with optional bounce)
                 Rectangle()
-                    .fill(.black)
+                    .fill(.clear)
                     .frame(width: closedNotchSize.width - cornerRadiusInsets.closed.top + (isBouncing ? 16 : 0))
             }
 
